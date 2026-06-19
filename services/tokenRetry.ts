@@ -36,6 +36,7 @@ const QUOTA_ERROR_PATTERNS: Record<ProviderId, string[]> = {
   a4f: ["429", "insufficient_quota", "quota"],
   openai: ["429", "insufficient_quota", "quota"],
   google: ["429", "quota", "Resource exhausted"],
+  agnes: ["429", "insufficient_quota", "quota", "rate limit"],
 };
 
 const ERROR_KEYS: Record<ProviderId, { required: string; exhausted: string }> =
@@ -63,6 +64,10 @@ const ERROR_KEYS: Record<ProviderId, { required: string; exhausted: string }> =
     google: {
       required: "error_google_token_required",
       exhausted: "error_google_token_exhausted",
+    },
+    agnes: {
+      required: "error_agnes_token_required",
+      exhausted: "error_agnes_token_exhausted",
     },
   };
 

@@ -42,6 +42,12 @@ export const useTokensForm = () => {
     active: 0,
     exhausted: 0,
   });
+  const [agnesToken, setAgnesToken] = useState("");
+  const [agnesStats, setAgnesStats] = useState({
+    total: 0,
+    active: 0,
+    exhausted: 0,
+  });
 
   const calculateStats = useCallback(
     (tokensList: string[], providerId: ProviderId) => {
@@ -81,6 +87,10 @@ export const useTokensForm = () => {
     const googleTokens = tokens.google || [];
     setGoogleToken(googleTokens.join(","));
     setGoogleStats(calculateStats(googleTokens, "google"));
+
+    const agnesTokens = tokens.agnes || [];
+    setAgnesToken(agnesTokens.join(","));
+    setAgnesStats(calculateStats(agnesTokens, "agnes"));
   }, [tokens, calculateStats]);
 
   const updateToken = (type: ProviderId, value: string) => {
@@ -108,6 +118,9 @@ export const useTokensForm = () => {
     } else if (type === "google") {
       setGoogleToken(value);
       setGoogleStats(newStats);
+    } else if (type === "agnes") {
+      setAgnesToken(value);
+      setAgnesStats(newStats);
     }
   };
 
@@ -124,6 +137,8 @@ export const useTokensForm = () => {
     openaiStats,
     googleToken,
     googleStats,
+    agnesToken,
+    agnesStats,
     updateToken,
     initializeTokens,
   };
